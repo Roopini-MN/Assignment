@@ -1,16 +1,12 @@
 package stepDefinitionMobile;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,8 +26,8 @@ JavascriptExecutor jse=getJseDriver();
 		driver.get("https://check24.de");
 	}
 
-	@When("^User clickes on Shopping Link from Homepage$")
-	public void User_clickes_on_Shopping_Link_from_Homepage() throws Throwable {
+	@When("^User clicks on Shopping Link from Homepage$")
+	public void User_clicks_on_Shopping_Link_from_Homepage() throws Throwable {
 		WebElement ele=driver.findElement(By.xpath("//a[text()='Akzeptieren']"));
 		if(ele.isDisplayed())
 		{
@@ -93,13 +89,13 @@ JavascriptExecutor jse=getJseDriver();
 
 	@And("^User sees the \"([^\"]*)\" and \"([^\"]*)\" details$")
 	public void User_sees_the_and_details(String exp_price,String exp_totalprice) throws Throwable {
-	  String act_price=driver.findElement(By.xpath("//div[@class='cart-tile']//div[@class='cart-item-price']")).getText().trim();
-	  System.out.println("Actual price is "+act_price);
-	  assertEquals("Actual and Expected price are not matching", exp_price, act_price);
+		String act_price=driver.findElement(By.xpath("//div[@class='cart-tile']//div[@class='cart-item-price']")).getText().trim();
+		System.out.println("Actual price is "+act_price);
+		assertEquals("Actual and Expected price are not matching", exp_price, act_price);
 	  
-	  String act_totalprice=driver.findElement(By.xpath("//div[@class='column cart-total__price']")).getText().trim();
-	  System.out.println("Actual totalptrice is "+act_totalprice);
-	  assertEquals("Actual and Expected total price are not matching", exp_totalprice, act_totalprice);
+		String act_totalprice=driver.findElement(By.xpath("//div[@class='column cart-total__price']")).getText().trim();
+		System.out.println("Actual totalptrice is "+act_totalprice);
+		assertEquals("Actual and Expected total price are not matching", exp_totalprice, act_totalprice);
 	}
 
 	@When("^User changes the \"([^\"]*)\"$")
@@ -111,32 +107,32 @@ JavascriptExecutor jse=getJseDriver();
 
 	@Then("^User should be able to see the updated \"([^\"]*)\",\"([^\"]*)\" and \"([^\"]*)\" details$")
 	public void User_should_be_able_to_see_the_updated_and_details(String exp_zwischensumme, String exp_gesamtsumme, String exp_punkte) throws Throwable {
-	 String act_zwischensumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[1]/div[@class='column cart-list__price']")).getText().trim();
-	 System.out.println("zwischensumme is "+act_zwischensumme);
-	 assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
+		String act_zwischensumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[1]/div[@class='column cart-list__price']")).getText().trim();
+		System.out.println("zwischensumme is "+act_zwischensumme);
+		assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
 	 
-	 String act_gesamtsumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[3]/div[@class='column cart-total__price']")).getText().trim();
-	 System.out.println("gesamtsumme is "+act_gesamtsumme);
-	 assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
+		String act_gesamtsumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[3]/div[@class='column cart-total__price']")).getText().trim();
+		System.out.println("gesamtsumme is "+act_gesamtsumme);
+		assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
 	 
-	 String punkteDetails=driver.findElement(By.xpath("//div[@class='column small-expand']/span[2]/span[1]")).getText().trim();
-	 String act_punkte[]=punkteDetails.split(" ");
-	 System.out.println("punkte is "+punkteDetails);
-	 Thread.sleep(3000);
-	 assertEquals("Actual and Expected punkte are not matching", exp_punkte, act_punkte[0]);
+		String punkteDetails=driver.findElement(By.xpath("//div[@class='column small-expand']/span[2]/span[1]")).getText().trim();
+		String act_punkte[]=punkteDetails.split(" ");
+		System.out.println("punkte is "+punkteDetails);
+		Thread.sleep(3000);
+		assertEquals("Actual and Expected punkte are not matching", exp_punkte, act_punkte[0]);
 	}
 
 	@When("^User clicks on the link Löschen$")
 	public void User_clicks_on_the_link_Löschen() throws Throwable {
-	   driver.findElement(By.xpath("//div[@class='cart-item__controls']//a/span[.='Löschen']")).click();
-	   Thread.sleep(1000);
+	    driver.findElement(By.xpath("//div[@class='cart-item__controls']//a/span[.='Löschen']")).click();
+	    Thread.sleep(1000);
 	}
 
 
 	@Then("^User should be able to see the \"([^\"]*)\"$")
 	public void User_should_be_able_to_see_the(String exp_msg) throws Throwable {
-	  String act_msg=driver.findElement(By.xpath("//div//p[contains(.,'Ihr Warenkorb ist zurzeit leer')]")).getText().trim();
-	  assertEquals("Actual and Expected message are not matching", exp_msg, act_msg);
+	   String act_msg=driver.findElement(By.xpath("//div//p[contains(.,'Ihr Warenkorb ist zurzeit leer')]")).getText().trim();
+	   assertEquals("Actual and Expected message are not matching", exp_msg, act_msg);
 	  
 		
 	

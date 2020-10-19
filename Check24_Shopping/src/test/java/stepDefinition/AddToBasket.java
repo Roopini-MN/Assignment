@@ -1,16 +1,11 @@
 package stepDefinition;
 
 import java.util.concurrent.TimeUnit;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -29,8 +24,8 @@ public class AddToBasket extends BaseUtilities {
 		driver.get("https://check24.de");
 	}
 
-	@When("^User clickes on Shopping Link from Homepage$")
-	public void User_clickes_on_Shopping_Link_from_Homepage() throws Throwable {
+	@When("^User clicks on Shopping Link from Homepage$")
+	public void User_clicks_on_Shopping_Link_from_Homepage() throws Throwable {
 		WebElement ele=driver.findElement(By.xpath("//a[text()='Akzeptieren']"));
 		if(ele.isDisplayed())
 		{
@@ -62,8 +57,7 @@ public class AddToBasket extends BaseUtilities {
 	public void Selects_the_Tute_Luft_product_from_result_list() throws Throwable {
 		WebElement price_ele=driver.findElement(By.xpath("//div[.='Eine Tüte Luft']/following-sibling::div[@class='product__price']"));
 		assertTrue("Price element is not displayed",price_ele.isDisplayed());
-	   driver.findElement(By.xpath("//a[.='Eine Tüte Luft']")).click();
-		 
+	    driver.findElement(By.xpath("//a[.='Eine Tüte Luft']")).click();	 
 	}
 
 	@Then("^User should be navigated to respective Product page$")
@@ -77,21 +71,18 @@ public class AddToBasket extends BaseUtilities {
 	public void User_clicks_on_the_in_den_Warenkorb_button() throws Throwable {
 		Thread.sleep(3000);
 		WebElement warenkorb_btn=driver.findElement(By.xpath("//button[contains(.,'in den Warenkorb')]"));
-		//jse.executeScript("arguments[0].click();", warenkorb_btn);
 		warenkorb_btn.click();
-		Thread.sleep(1000);
-	
+		Thread.sleep(3000);
 	}
 
 	
 
 	@Then("^Pop up should be displayed along with message$")
 	public void Pop_up_should_be_displayed_along_with_message() throws Throwable {
-	   WebElement message_ele=driver.findElement(By.xpath("//span[.='Ihr Produkt wurde erfolgreich zum Warenkorb hinzugefügt.']"));
-	   System.out.println("message is "+message_ele);
-	   assertTrue("Product is not added successfully to basket",message_ele.isDisplayed());
-	   driver.findElement(By.xpath("//div[@class='modal-desktop__header']/div")).click();
-	   Thread.sleep(1000);
+	    WebElement message_ele=driver.findElement(By.xpath("//span[.='Ihr Produkt wurde erfolgreich zum Warenkorb hinzugefügt.']"));
+	    assertTrue("Product is not added successfully to basket",message_ele.isDisplayed());
+	    driver.findElement(By.xpath("//div[@class='modal-desktop__header']/div")).click();
+	    Thread.sleep(1000);
 	}
 	
 	@When("^User clicks on the Warenkorb link$")
@@ -99,14 +90,12 @@ public class AddToBasket extends BaseUtilities {
 		Thread.sleep(3000);
 		WebElement warenkorb_lnk=driver.findElement(By.xpath("//a/div[contains(.,'Warenkorb')]"));
 		warenkorb_lnk.click();
-		//jse.executeScript("arguments[0].click();", warenkorb_lnk);
 	
 	}
 
 	@Then("^User should be navigated to cart page$")
 	public void User_should_be_navigated_to_cart_page() throws Throwable {
 		String actualTitle=driver.getTitle();
-		System.out.println("string is "+actualTitle);
 		String expectedTitle = "Warenkorb - Shopping | CHECK24";
 		assertEquals("Shopping Home page is not displayed", expectedTitle, actualTitle);
 	    
@@ -114,13 +103,13 @@ public class AddToBasket extends BaseUtilities {
 
 	@And("^User sees the \"([^\"]*)\" and \"([^\"]*)\" details$")
 	public void User_sees_the_and_details(String exp_price,String exp_totalprice) throws Throwable {
-	  String act_price=driver.findElement(By.xpath("//div[@class='cart-tile']//div[@class='cart-item-price']")).getText().trim();
-	  System.out.println("Actual price is "+act_price);
-	  assertEquals("Actual and Expected price are not matching", exp_price, act_price);
+	   String act_price=driver.findElement(By.xpath("//div[@class='cart-tile']//div[@class='cart-item-price']")).getText().trim();
+	   System.out.println("Actual price is "+act_price);
+	   assertEquals("Actual and Expected price are not matching", exp_price, act_price);
 	   
-	  String act_totalprice=driver.findElement(By.xpath("//div[@class='column cart-total__price']")).getText().trim();
-	  System.out.println("Actual totalptrice is "+act_totalprice);
-	  assertEquals("Actual and Expected total price are not matching", exp_totalprice, act_totalprice);
+	   String act_totalprice=driver.findElement(By.xpath("//div[@class='column cart-total__price']")).getText().trim();
+	   System.out.println("Actual totalptrice is "+act_totalprice);
+	   assertEquals("Actual and Expected total price are not matching", exp_totalprice, act_totalprice);
 	}
 
 	@When("^User changes the \"([^\"]*)\"$")
@@ -132,19 +121,19 @@ public class AddToBasket extends BaseUtilities {
 
 	@Then("^User should be able to see the updated \"([^\"]*)\",\"([^\"]*)\" and \"([^\"]*)\" details$")
 	public void User_should_be_able_to_see_the_updated_and_details(String exp_zwischensumme, String exp_gesamtsumme, String exp_punkte) throws Throwable {
-	 String act_zwischensumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[1]/div[@class='column cart-list__price']")).getText().trim();
-	 System.out.println("zwischensumme is "+act_zwischensumme);
-	 assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
+		String act_zwischensumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[1]/div[@class='column cart-list__price']")).getText().trim();
+		System.out.println("zwischensumme is "+act_zwischensumme);
+		assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
 	 
-	 String act_gesamtsumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[3]/div[@class='column cart-total__price']")).getText().trim();
-	 System.out.println("gesamtsumme is "+act_gesamtsumme);
-	 assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
+		String act_gesamtsumme=driver.findElement(By.xpath("//div[@class='cart-summary']/div[3]/div[@class='column cart-total__price']")).getText().trim();
+		System.out.println("gesamtsumme is "+act_gesamtsumme);
+		assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
 	 
-	 String punkteDetails=driver.findElement(By.xpath("//div[@class='column small-expand']/span[2]/span[1]")).getText().trim();
-	 String act_punkte[]=punkteDetails.split(" ");
-	 System.out.println("punkte is "+punkteDetails);
-	 Thread.sleep(3000);
-	 assertEquals("Actual and Expected punkte are not matching", exp_punkte, act_punkte[0]);
+		String punkteDetails=driver.findElement(By.xpath("//div[@class='column small-expand']/span[2]/span[1]")).getText().trim();
+		String act_punkte[]=punkteDetails.split(" ");
+		System.out.println("punkte is "+punkteDetails);
+		Thread.sleep(3000);
+		assertEquals("Actual and Expected punkte are not matching", exp_punkte, act_punkte[0]);
 	}
 
 	@When("^User clicks on the right slider arrow button$")
@@ -169,8 +158,8 @@ public class AddToBasket extends BaseUtilities {
 
 	@Then("^User should be able to see the \"([^\"]*)\"$")
 	public void User_should_be_able_to_see_the(String exp_msg) throws Throwable {
-	  String act_msg=driver.findElement(By.xpath("//div//p[contains(.,'Ihr Warenkorb ist zurzeit leer')]")).getText().trim();
-	  assertEquals("Actual and Expected message are not matching", exp_msg, act_msg);
+	   String act_msg=driver.findElement(By.xpath("//div//p[contains(.,'Ihr Warenkorb ist zurzeit leer')]")).getText().trim();
+	   assertEquals("Actual and Expected message are not matching", exp_msg, act_msg);
 	  }
 
 }

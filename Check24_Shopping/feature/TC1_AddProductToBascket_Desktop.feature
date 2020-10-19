@@ -22,7 +22,7 @@ Feature: Adding Product to Basket
  @DesktopTest
   Scenario Outline: Verify Warenkorb Page functionality in Desktop version
     Given User is on check24 website
-    When  User clickes on Shopping Link from Homepage
+    When  User clicks on Shopping Link from Homepage
     Then  User should be navigated to shopping home page
     When  User search for "<Product>" in the search box
     And   Selects the Tute Luft product from result list

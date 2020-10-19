@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 		features = "feature",
 		glue = "stepDefinition",
 		format = {"pretty"},
-		tags= {"@test"},
+		tags= {"@DesktopTest"},
 		monochrome = true
 		
  )

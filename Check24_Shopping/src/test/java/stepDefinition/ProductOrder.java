@@ -1,16 +1,11 @@
 package stepDefinition;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -31,9 +26,7 @@ public class ProductOrder extends BaseUtilities {
 		if(ele.isDisplayed())
 		{
 			ele.click();
-		}
-		
-	   
+		}   
 	}
 
 	@When("^User Clicks on zur Kasse gehen link$")
@@ -55,43 +48,29 @@ public class ProductOrder extends BaseUtilities {
 	public void User_Enters_and_without_selecting_the_radio_button(String userName, String password) throws Throwable {
 		Thread.sleep(2000);
 		WebElement username_txt=driver.findElement(By.xpath("//input[@type='email']"));
-		if(username_txt.isDisplayed())
-		{
-			username_txt.clear();
-			username_txt.sendKeys(userName);
-		}
+		username_txt.clear();
+		username_txt.sendKeys(userName);
+	
 		WebElement weiter_btn=driver.findElement(By.xpath("//button[@value='weiter']"));	
-		if(weiter_btn.isDisplayed())
-		{
-			jse.executeScript("arguments[0].click();", weiter_btn);
-		}
+	    jse.executeScript("arguments[0].click();", weiter_btn);
+		
 		Thread.sleep(2000);
 		WebElement password_txt=driver.findElement(By.xpath("//input[@type='password']"));
-		if(password_txt.isDisplayed())
-		{
-			password_txt.clear();
-			password_txt.sendKeys(password);
-		}
-		
+		password_txt.clear();
+		password_txt.sendKeys(password);
+	
 		WebElement login_btn=driver.findElement(By.xpath("//span[text()='anmelden']"));
-		if(login_btn.isDisplayed())
-		{
-			jse.executeScript("arguments[0].click();", login_btn);
-		}
+		jse.executeScript("arguments[0].click();", login_btn);
+
 		Thread.sleep(1000);
 		WebElement weiter_btn1=driver.findElement(By.xpath("//button[@id='c24-uli-points-btn']"));
-		if(weiter_btn1.isDisplayed())
-		{
-			jse.executeScript("arguments[0].click();", weiter_btn1);
+	    jse.executeScript("arguments[0].click();", weiter_btn1);
 			
-		}
-	    
-	}
+}
 	
 	
 	@Then("^User should be able to see error message$")
 	public void User_should_be_able_to_see_error_message() throws Throwable {
-		String exp_msg="Möchten Sie sich CHECK24 Punkte sichern, dann markieren Sie bitte Ja.";
 		WebElement act_msg=driver.findElement(By.xpath("//div[@class='clearfix style-scope unified-login']/div[3]"));
 		assertTrue("Error message is not displayed",act_msg.isDisplayed());
 		
@@ -101,26 +80,19 @@ public class ProductOrder extends BaseUtilities {
 	public void User_selects_the_radio_button() throws Throwable {
 		WebElement yes_btn=driver.findElement(By.xpath("(//span[@class='style-scope unified-login']/strong)[1]"));
 		Thread.sleep(1000);
-		if(yes_btn.isDisplayed())
-		{
-			jse.executeScript("arguments[0].click();", yes_btn);
-		}
+		jse.executeScript("arguments[0].click();", yes_btn);
 		
 		WebElement weiter_btn=driver.findElement(By.xpath("//button[@id='c24-uli-points-btn']"));
-		if(weiter_btn.isDisplayed())
-		{
-			jse.executeScript("arguments[0].click();", weiter_btn);
-			
-		}
+	    jse.executeScript("arguments[0].click();", weiter_btn);
 	}
 
 	@Then("^User see the same \"([^\"]*)\",\"([^\"]*)\" details on bestellung page$")
 	public void User_see_the_same_details_on_bestellung_page(String exp_zwischensumme, String exp_gesamtsumme) throws Throwable {
-	 String act_zwischensumme=driver.findElement(By.xpath("//div[@class='summary__subtotal']/div[2]")).getText().trim();
-	 assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
+		String act_zwischensumme=driver.findElement(By.xpath("//div[@class='summary__subtotal']/div[2]")).getText().trim();
+		assertEquals("Actual and Expected zwischensumme are not matching", exp_zwischensumme, act_zwischensumme);
 	 
-	 String act_gesamtsumme=driver.findElement(By.xpath("(//div[@class='summary__total']/div[2])[2]")).getText().trim(); 
-	assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
+		String act_gesamtsumme=driver.findElement(By.xpath("(//div[@class='summary__total']/div[2])[2]")).getText().trim(); 
+		assertEquals("Actual and Expected gesamtssumme are not matching", exp_gesamtsumme, act_gesamtsumme);
 		
 	}
 
@@ -164,24 +136,24 @@ public class ProductOrder extends BaseUtilities {
 
    @When("^User enters \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" and \"([^\"]*)\" details$")
    public void User_enters_and_details(String vorname, String nachname, String plz, String ort, String strasse, String nummer, String telephoneNummer) throws Throwable {
-	  driver.findElement(By.xpath("//label[@for='address-female-title-billing']/span")).click();
-	  WebElement vorname_txt=driver.findElement(By.id("address-first-name-billing"));
-	  vorname_txt.clear();
-	  vorname_txt.sendKeys(vorname);
-	  WebElement nachname_txt=driver.findElement(By.id("address-last-name-billing"));
-	  nachname_txt.clear();
-	  nachname_txt.sendKeys(nachname);
-	  WebElement plz_txt=driver.findElement(By.id("address-po-number-billing"));
-	  plz_txt.clear();
-	  plz_txt.sendKeys(plz);
-	  Thread.sleep(3000);
-	  WebElement straße_txt=driver.findElement(By.cssSelector("#address-street-billing"));
-      straße_txt.sendKeys(strasse);
-	  WebElement nummer_txt=driver.findElement(By.cssSelector("#address-house-number-billing"));
-	 nummer_txt.sendKeys(nummer);
-	  WebElement telefonnummer_txt=driver.findElement(By.id("address-phone-number-billing"));
-	  telefonnummer_txt.clear();
-	  telefonnummer_txt.sendKeys(telephoneNummer);
+	   driver.findElement(By.xpath("//label[@for='address-female-title-billing']/span")).click();
+	   WebElement vorname_txt=driver.findElement(By.id("address-first-name-billing"));
+	   vorname_txt.clear();
+	   vorname_txt.sendKeys(vorname);
+	   WebElement nachname_txt=driver.findElement(By.id("address-last-name-billing"));
+	   nachname_txt.clear();
+	   nachname_txt.sendKeys(nachname);
+	   WebElement plz_txt=driver.findElement(By.id("address-po-number-billing"));
+	   plz_txt.clear();
+	   plz_txt.sendKeys(plz);
+	   Thread.sleep(3000);
+	   WebElement straße_txt=driver.findElement(By.cssSelector("#address-street-billing"));
+	   straße_txt.sendKeys(strasse);
+	   WebElement nummer_txt=driver.findElement(By.cssSelector("#address-house-number-billing"));
+	   nummer_txt.sendKeys(nummer);
+	   WebElement telefonnummer_txt=driver.findElement(By.id("address-phone-number-billing"));
+	   telefonnummer_txt.clear();
+	   telefonnummer_txt.sendKeys(telephoneNummer);
 	}
 
 	@Then("^User should be navigated to payment page$")
@@ -189,6 +161,10 @@ public class ProductOrder extends BaseUtilities {
 		String actualTitle=driver.getTitle();
 		String expectedTitle = "Bezahlung – Shopping │ CHECK24";
 		assertEquals("Payment page is not displayed", expectedTitle, actualTitle);
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[@id='back']")) );
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//span[contains(text(),'Löschen')]")).click();
 		driver.close();
 	 
 	}
